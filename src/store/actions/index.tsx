@@ -1,0 +1,3 @@
+export {
+    fetchMovies
+} from './test';
