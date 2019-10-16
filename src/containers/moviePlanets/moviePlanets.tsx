@@ -7,7 +7,7 @@ import { ListGroupItem, Spinner, Table } from 'reactstrap';
 export interface IMoviePlanetsProps {
     planets?: [string];
     title?: string;
-    fetchPlanetData(url?: string): VoidFunction;
+    fetchPlanetData(url?: [{}]): VoidFunction;
     planetData?: [{string}]
 }
 
@@ -30,9 +30,10 @@ export class MoviePlanets extends React.Component<IMoviePlanetsProps, IMoviePlan
     // }
 
 
-    dropDownHandler = () => {
+    dropDownHandler = async () => {
         this.setState(prevState => ({ showDropDown: !prevState.showDropDown }))
         // this.planetsData();
+        await this.props.fetchPlanetData(this.props.planets)
     }
 
     // planetsData = async () => {
@@ -51,7 +52,7 @@ export class MoviePlanets extends React.Component<IMoviePlanetsProps, IMoviePlan
     render() {
         // console.log(this.props)
         // console.log(this.props.planetData)
-        console.log(this.state.planetsData)
+        // console.log(this.state.planetsData)
         return (
             <React.Fragment>
                 <ListGroupItem onClick={this.dropDownHandler} className={this.state.showDropDown ? 'open' : null}>{this.props.title}</ListGroupItem>

@@ -1,6 +1,10 @@
 import * as actionTypes from './actionTypes';
 import axios from 'axios';
 
+export interface element {
+    data?: []
+}
+
 export const startFetching = () => {
     return{
         type: actionTypes.FETCH_PLANETS_PENDING,
@@ -24,14 +28,20 @@ export const fetchSucces = (planetData) => {
 export const fetchPlanets = (apiUrl) => {
     return dispatch => {
         dispatch(startFetching());
-        axios.get(apiUrl)
+        Promise.all(apiUrl.map(element => {
+            return axios.get(element)
+        }))
             .then(response => {
-                dispatch(fetchSucces(response.data));
+                console.log(response)
+                let data = [];
+                response.map(element => {
+                    return data.push(element.data)
+                })
+                console.log(data)
+                dispatch(fetchSucces(data))
             })
             .catch(err => {
                 dispatch(fetchingFailed(err))
-                // console.log(err);
-                // dispatch(authFail(err.response.data.error));
             })
-    };
+    }
 };
