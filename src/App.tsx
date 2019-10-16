@@ -1,14 +1,23 @@
 import React from 'react';
 import './App.css';
+import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
+// import asyncComponent from './hoc/asyncComponent';
 
-import Test from '../src/containers/test';
+import Home from './containers/home/home';
 
-const App: React.FC = () => {
-  return (
-    <div className="App">
-      <Test />
-    </div>
-  );
+// const asyncCheckout = asyncComponent(() => {
+//   return import('./containers/Checkout/Checkout');
+// })
+
+export class App extends React.Component {
+  render() {
+    return (
+      <Switch>
+        <Route path="/" component={Home} />
+        <Redirect to="/" />
+      </Switch>
+    );
+  }
 }
 
-export default App;
+export default withRouter(App);

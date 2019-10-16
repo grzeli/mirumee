@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import test from '../src/store/reducers/test';
+import home from '../src/store/reducers/home';
+import planets from '../src/store/reducers/moviePlanets';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { BrowserRouter } from 'react-router-dom';
@@ -12,9 +13,8 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 
 const rootReducer = combineReducers({
-    // burgerBuilder: burgerBuilderReducer,
-    // order: orderReducer,
-    test: test
+    planets: planets,
+    home: home
 })
 
 const store = createStore(rootReducer, applyMiddleware(thunk));

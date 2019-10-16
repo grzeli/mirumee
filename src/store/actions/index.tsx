@@ -1,3 +1,6 @@
 export {
     fetchMovies
-} from './test';
+} from './home';
+export {
+    fetchPlanets
+} from './moviePlanets';

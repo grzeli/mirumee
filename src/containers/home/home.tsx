@@ -1,12 +1,23 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import * as actionTypes from '../store/actions/index';
+import * as actionTypes from '../../store/actions/index';
 
-import { Container, ListGroup, ListGroupItem, Spinner } from 'reactstrap';
-import './test.scss';
-import logo from '../assets/images/logo.svg';
+import { Container, ListGroup, Spinner } from 'reactstrap';
+import './home.scss';
+import logo from '../../assets/images/logo.svg';
+import MoviePlanets from '../moviePlanets/moviePlanets';
 
-export class Test extends React.Component<{onFetchMovies: VoidFunction, movies: [{title: string}]}> {
+export interface IHomeMoviesProps {
+    title?: string;
+    planets?: [string]
+}
+
+export interface IHomeProps {
+    onFetchMovies: VoidFunction;
+    movies: [IHomeMoviesProps];
+}
+
+export class Test extends React.Component<IHomeProps> {
     componentDidMount() {
         this.props.onFetchMovies();
     }
@@ -20,9 +31,13 @@ export class Test extends React.Component<{onFetchMovies: VoidFunction, movies: 
                     <ListGroup>
                         {typeof(this.props.movies) !== 'undefined' && this.props.movies.length > 0 ? (
                             this.props.movies.map((element, index) => (
-                                <ListGroupItem key={index}>{element.title}</ListGroupItem>
+                                <MoviePlanets
+                                    key={index}
+                                    planets={element.planets}
+                                    title={element.title}
+                                />
                             ))
-                        ) : <Spinner color="info" style={{ margin: 'auto', marginBottom: '40px', height: '5rem', width: '5rem' }} />}
+                        ) : <Spinner color="info" style={{ margin: 'auto', marginTop: '17.5%', height: '5rem', width: '5rem' }} />}
                     </ListGroup>
                 </div>
             </Container>
@@ -32,7 +47,7 @@ export class Test extends React.Component<{onFetchMovies: VoidFunction, movies: 
 
 const mapStateToProps = state => {
     return {
-        movies: state.test.movies
+        movies: state.home.movies
     }
 }
 
