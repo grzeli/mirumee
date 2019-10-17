@@ -9,7 +9,8 @@ const initialState = {
 
 const fetchPlanets = (state, action) => {
     const newObject = updateObject(state, {
-        planetData: action.planetData
+        planetData: action.planetData,
+        loading: false
     })
     return newObject
 }
@@ -23,7 +24,7 @@ const fetchPlanetsRejected = (state, action) => {
 
 const planetsReducer = (state = initialState, action) => {
     switch (action.type) {
-        case actionTypes.FETCH_PLANETS_PENDING: return updateObject(state, { loading: true });
+        case actionTypes.FETCH_PLANETS_PENDING: return updateObject(state, { loading: true, planetData: [] });
         case actionTypes.FETCH_PLANETS_FULLFILED: return fetchPlanets(state, action);
         case actionTypes.FETCH_PLANETS_REJECTED: return fetchPlanetsRejected(state, action);
         default:

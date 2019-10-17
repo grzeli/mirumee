@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import * as actionTypes from '../../store/actions/index';
 
-import { Container, ListGroup, Spinner } from 'reactstrap';
+import { Container, ListGroup } from 'reactstrap';
 import './home.scss';
 import logo from '../../assets/images/logo.svg';
 import MoviePlanets from '../moviePlanets/moviePlanets';
@@ -22,7 +22,7 @@ export class Test extends React.Component<IHomeProps> {
         this.props.onFetchMovies();
     }
     render() {
-        console.log(this.props.movies)
+        // console.log(this.props.movies)
         // console.log(this.props.onFetchMovies())
         return (
             <Container>
@@ -37,7 +37,7 @@ export class Test extends React.Component<IHomeProps> {
                                     title={element.title}
                                 />
                             ))
-                        ) : <Spinner color="info" style={{ margin: 'auto', marginTop: '17.5%', height: '5rem', width: '5rem' }} />}
+                        ) : <div className="spinner movie-container_spinner" /> } 
                     </ListGroup>
                 </div>
             </Container>

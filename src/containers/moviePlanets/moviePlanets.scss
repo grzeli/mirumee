@@ -1,7 +1,20 @@
-// .movie-planets {
-//     &_table {
-//         @media (max-width: 767px) {
+.movie-planets {
+    &_table {
+        // @media (max-width: 767px) {
 
-//         }
-//     }
-// }
+        // }
+        position: relative;
+        width: 100%;
+        min-height: 210px;
+    }
+    &_spinner {
+        position: absolute;
+        width: 23.33px;
+        height: 24px;
+        top: 125px;
+        left: calc(50% - (23.33px/2));
+        margin-bottom: 70px;
+        text-align: center;
+        display: block;
+    }
+}
