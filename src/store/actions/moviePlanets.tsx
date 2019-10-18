@@ -6,17 +6,18 @@ export interface IElement {
 }
 
 export interface IElementData {
+    [x: string]: any;
     climate?: string;
     created?: string;
-    diameter?: string;
+    diameter?: any;
     films?: string[];
     gravit?: string;
     name?: string;
-    orbital_period?: string;
-    population?: string;
+    orbital_period?: any;
+    population?: any;
     residents?: string[];
-    rotation_period?: string;
-    surface_water?: string;
+    rotation_period?: any;
+    surface_water?: any;
     terrain?: string;
     url?: string;
 }
