@@ -67,11 +67,6 @@ export class MoviePlanets extends React.Component<IMoviePlanetsProps, IMoviePlan
     }
 
     render() {
-        // console.log(this.props)
-        // console.log(this.props.planets)
-        // console.log(this.props.planetData[0)
-        // console.log(this.state.planetData)
-        // console.log(this.props.loading)
         return (
             <React.Fragment>
                 <ListGroupItem className={this.state.showDropDown ? 'open' : null}>

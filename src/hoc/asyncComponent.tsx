@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-const asyncComponent = (importComponent) => {
-    return class extends Component {
+const asyncComponent = importComponent => {
+    return class extends Component<any> {
         state = {
             component: null
         }

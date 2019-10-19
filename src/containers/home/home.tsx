@@ -24,8 +24,6 @@ export class Test extends React.Component<IHomeProps> {
         this.props.onFetchMovies();
     }
     render() {
-        // console.log(this.props.movies)
-        // console.log(this.props.onFetchMovies())
         return (
             <Container>
                 <div className="col-lg-10 offset-lg-1 movie-container">
