@@ -4,8 +4,10 @@ import * as actionTypes from '../../store/actions/index';
 
 import { Container, ListGroup } from 'reactstrap';
 import './home.scss';
-import logo from '../../assets/images/logo.svg';
 import MoviePlanets from '../moviePlanets/moviePlanets';
+import NewMovie from '../newMovie/newMovie';
+
+const logoPath = require ('../../assets/images/logo.svg') as string;
 
 export interface IHomeMoviesProps {
     title?: string;
@@ -27,7 +29,7 @@ export class Test extends React.Component<IHomeProps> {
         return (
             <Container>
                 <div className="col-lg-10 offset-lg-1 movie-container">
-                    <img src={logo} alt="logo" />
+                    <img src={logoPath} alt="logo" />
                     <ListGroup>
                         {typeof(this.props.movies) !== 'undefined' && this.props.movies.length > 0 ? (
                             this.props.movies.map((element, index) => (
@@ -37,8 +39,9 @@ export class Test extends React.Component<IHomeProps> {
                                     title={element.title}
                                 />
                             ))
-                        ) : <div className="spinner movie-container_spinner" /> } 
+                        ) : <div className="spinner movie-container_spinner" /> }
                     </ListGroup>
+                    <NewMovie />
                 </div>
             </Container>
         )

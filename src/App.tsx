@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import './App.scss';
 import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
 // import asyncComponent from './hoc/asyncComponent';
 

@@ -1,0 +1,172 @@
+.add-movie {
+    background-image: linear-gradient(to right, #fff 55%, rgba(255,255,255,0) 0%);
+    width: calc(100% + 30px);
+    margin-left: -15px;
+    padding: 0 15px;
+    background-position: top;
+    background-size: 20px 2px;
+    background-repeat: repeat-x;
+    padding-top: 32px;
+    &_container {
+        padding: 21px 95px 31px;
+        cursor: default;
+        label {
+            font-family: 'Barlow', sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 12px;
+            line-height: 14px;
+            color: #555555;
+            margin: 0;
+        }
+        input[type="text"] {
+            font-family: 'Barlow', sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 16px;
+            line-height: 19px;
+            color: #474747;
+            position: relative;
+            &::placeholder {
+                color: #C4C4C4;
+            }
+            border: none;
+            border-bottom: 1px solid #999999;
+            border-radius: 0;
+            padding: 5px 10px 7px 2.5px;
+            outline: none;
+            box-shadow: none;
+        }
+        .form-group:last-of-type {
+            input[type="text"] {
+                background:url('../../assets//images/search.svg') no-repeat calc(100% - 8px) 50%;
+                &:active,
+                &:focus {
+                    background-color: #FDFFE2;
+                }
+            }
+        }
+        button {
+            font-family: 'Barlow', sans-serif;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 12px;
+            line-height: 16px;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            letter-spacing: 0.05em;
+            color: #FFFFFF;
+            border-radius: 4px;
+            padding: 7.5px 49px;
+            margin-left: auto;
+            margin-top: 31px;
+        }
+    }
+
+    &_results {
+        margin-top: 1px;
+        background: #FFFFFF;
+        border: 1px solid #E5E5E5;
+        box-sizing: border-box;
+        box-shadow: 0px 4px 4px rgba(196, 196, 196, 0.5);
+        padding: 11px;
+        p {
+            font-family: 'Barlow', sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 16px;
+            line-height: 19px;
+            display: flex;
+            align-items: center;
+            color: #555555;
+            margin: 0 0 13px 0;
+            padding: 0;
+            cursor: pointer;
+            &:last-of-type {
+                margin: 0;
+            }
+        }
+    }
+
+    &_planet-name {
+        font-family: 'Barlow', sans-serif;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 19px;
+        color: #474747;
+        border: 1px solid #999999;
+        box-sizing: border-box;
+        border-radius: 18px;
+        padding: 6px 44px 6px 16px;
+        position: relative;
+        cursor: default;
+        margin: 16px 15px 16px 0;
+        display: inline-block;
+        .close {
+            width: 13px;
+            height: 13px;
+            padding: 0;
+            margin: 0;
+            position: absolute;
+            cursor: pointer;
+            background: url('../../assets/images/close.svg') no-repeat;
+            outline: none;
+            right: 18px;
+            top: 10px;
+            color: #555555;
+            border-radius: 0;
+            opacity: 1!important;
+        }
+    }
+
+    .form-group.error {
+        label {
+            color: #FF1616;
+        }
+        span {
+            display: block;
+            color: #FF1616;
+            font-family: 'Barlow', sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 12px;
+            line-height: 14px;
+            border: 1px solid #FF1616;
+            padding: 8px 8px 9px 9px;
+            margin: 1px 0 0 0;
+            box-shadow: 0px 4px 4px rgba(196, 196, 196, 0.5);
+        }
+        button {
+            background: #E0E6EE;
+        }
+    }
+}
+
+.copyright {
+    font-family: 'Barlow', sans-serif;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 14px;
+    display: flex;
+    align-items: center;
+    color: #999999;
+    text-align: center;
+    margin-top:38px;
+    margin-bottom: 32px;
+    justify-content: center;
+}
+
+.list-group-item {
+    .add-movie_container {
+        display:none;
+    }
+}
+
+.list-group-item.open {
+    .add-movie_container {
+        display: block;
+    }
+}
