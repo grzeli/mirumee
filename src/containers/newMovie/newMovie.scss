@@ -9,6 +9,9 @@
     padding-top: 32px;
     &_container {
         padding: 21px 95px 31px;
+        @media (max-width:767px) {
+            padding: 21px 10px 31px!important;
+        }
         cursor: default;
         label {
             font-family: 'Barlow', sans-serif;

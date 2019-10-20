@@ -19,6 +19,7 @@ export interface IMoviePlanetsState {
     planetData?: IElementData[];
     reverse?: boolean;
     intPlanetData?: any;
+    errorMessage?: string;
 }
 
 export interface IMoviePlanetsProps extends StateProps, DispatchProps {}
@@ -30,7 +31,8 @@ export class MoviePlanets extends React.Component<IMoviePlanetsProps, IMoviePlan
             showDropDown: false,
             planetData: [],
             intPlanetData: [],
-            reverse: false
+            reverse: false,
+            errorMessage: ''
         };
     }
 
@@ -47,7 +49,11 @@ export class MoviePlanets extends React.Component<IMoviePlanetsProps, IMoviePlan
 
     dropDownHandler = async () => {
         this.setState(prevState => ({ showDropDown: !prevState.showDropDown }))
-        await this.props.fetchPlanetData(this.props.planets);
+        if (this.props.planets.length > 0) {
+            await this.props.fetchPlanetData(this.props.planets);
+        } else {
+            this.setState({ errorMessage: 'Not found such planets at universe'})
+        }
     }
 
     sortDataHandler = key => {
@@ -72,32 +78,38 @@ export class MoviePlanets extends React.Component<IMoviePlanetsProps, IMoviePlan
                 <ListGroupItem className={this.state.showDropDown ? 'open' : null}>
                     <h5 onClick={this.dropDownHandler}>{this.props.title}</h5>
                     <Table className="movie-planets_table" style={this.state.showDropDown ? { display: 'table' } : { display: 'none' }}>
-                        <thead>
-                            <tr className="movie-planets_table_sortable">
-                                <th onClick={e => this.sortDataHandler('name')}>Planet Name</th>
-                                <th onClick={e => this.sortDataHandler('rotation_period')}>Rotation period</th>
-                                <th onClick={e => this.sortDataHandler('orbital_period')}>Orbital period</th>
-                                <th onClick={e => this.sortDataHandler('diameter')}>Diameter</th>
-                                <th onClick={e => this.sortDataHandler('climate')}>Climate</th>
-                                <th onClick={e => this.sortDataHandler('surface_water')}>Surface water</th>
-                                <th onClick={e => this.sortDataHandler('population')}>Population</th>
-                            </tr>
-                        </thead>
-                            {this.state.planetData !== undefined && this.state.planetData.length > 0 ? (
-                                <tbody>
-                                    {this.state.planetData.map((element, index) => (
-                                        <tr key={index}>
-                                            <td>{element.name}</td>
-                                            <td>{element.rotation_period}</td>
-                                            <td>{element.orbital_period}</td>
-                                            <td>{element.diameter}</td>
-                                            <td>{element.climate}</td>
-                                            <td>{element.surface_water}</td>
-                                            <td>{element.population}</td>
-                                        </tr>
-                                    ))}
-                                </tbody>
-                            ) : <tbody className="spinner movie-planets_spinner" /> }
+                        {this.state.errorMessage.length > 0 ?
+                            <span className="error-message">{this.state.errorMessage}</span>
+                        :
+                            <React.Fragment>
+                                <thead>
+                                    <tr className="movie-planets_table_sortable">
+                                        <th onClick={e => this.sortDataHandler('name')}>Planet Name</th>
+                                        <th onClick={e => this.sortDataHandler('rotation_period')}>Rotation period</th>
+                                        <th onClick={e => this.sortDataHandler('orbital_period')}>Orbital period</th>
+                                        <th onClick={e => this.sortDataHandler('diameter')}>Diameter</th>
+                                        <th onClick={e => this.sortDataHandler('climate')}>Climate</th>
+                                        <th onClick={e => this.sortDataHandler('surface_water')}>Surface water</th>
+                                        <th onClick={e => this.sortDataHandler('population')}>Population</th>
+                                    </tr>
+                                </thead>
+                                    {this.state.planetData !== undefined && this.state.planetData.length > 0 ? (
+                                        <tbody>
+                                            {this.state.planetData.map((element, index) => (
+                                                <tr key={index}>
+                                                    <td>{element.name}</td>
+                                                    <td>{element.rotation_period}</td>
+                                                    <td>{element.orbital_period}</td>
+                                                    <td>{element.diameter}</td>
+                                                    <td>{element.climate}</td>
+                                                    <td>{element.surface_water}</td>
+                                                    <td>{element.population}</td>
+                                                </tr>
+                                            ))}
+                                        </tbody>
+                                    ) : <tbody className="spinner movie-planets_spinner" />}
+                            </React.Fragment>
+                        }
                     </Table>
                 </ListGroupItem>
             </React.Fragment>

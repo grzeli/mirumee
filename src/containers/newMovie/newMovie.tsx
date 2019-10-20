@@ -32,6 +32,7 @@ export interface INewMovieState {
     planets?: string[];
     movieValid?: boolean;
     formError?: string;
+    planetsError?: boolean;
 }
 
 const validationSchema = object({
@@ -58,7 +59,8 @@ export class NewMovie extends React.Component<{}, INewMovieState> {
             planetName: '',
             planets: [],
             movieValid: false,
-            formError: ''
+            formError: '',
+            planetsError: false
         }
     }
 
@@ -106,8 +108,9 @@ export class NewMovie extends React.Component<{}, INewMovieState> {
         axios.get(url + name)
             .then(response => {
                 const planets = response.data.results;
+                console.log(response)
                 this.setState({ filteredPlanets: planets });
-            });
+            })
     }
 
     movieNameHandler = (event) => {
@@ -137,6 +140,7 @@ export class NewMovie extends React.Component<{}, INewMovieState> {
     }
 
     render() {
+        console.log(this.state.movies)
         return (
             <div className="add-movie" onClick={this.resultsHandler}>
                     <ListGroup>
@@ -162,7 +166,7 @@ export class NewMovie extends React.Component<{}, INewMovieState> {
                                     name="name"
                                     value={this.state.movieName}
                                     onChange={this.movieNameHandler}
-                                    autocomplete="off"
+                                    autoComplete="off"
                                 />
                                 <span
                                     className="error-message"
@@ -188,6 +192,9 @@ export class NewMovie extends React.Component<{}, INewMovieState> {
                                     onChange={this.planetsHandler}
                                     onClick={this.resultsOpenHandler}
                                 />
+                                <span className="error-message" style={this.state.planetsError !== undefined && this.state.planetsError ? { display: 'block' } : { display: 'none' }}>
+                                    Add valid Planets!
+                                </span>
                                 {this.state.filteredPlanets !== undefined && this.state.filteredPlanets.length > 0 && this.state.showResults ?
                                     (
                                         <div className="add-movie_results">
