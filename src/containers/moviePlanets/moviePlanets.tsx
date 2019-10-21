@@ -79,7 +79,7 @@ export class MoviePlanets extends React.Component<IMoviePlanetsProps, IMoviePlan
                     <h5 onClick={this.dropDownHandler}>{this.props.title}</h5>
                     <Table className="movie-planets_table" style={this.state.showDropDown ? { display: 'table' } : { display: 'none' }}>
                         {this.state.errorMessage.length > 0 ?
-                            <span className="error-message">{this.state.errorMessage}</span>
+                            <thead className="error-message"><tr><th>{this.state.errorMessage}</th></tr></thead>
                         :
                             <React.Fragment>
                                 <thead>

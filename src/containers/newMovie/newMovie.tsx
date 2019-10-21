@@ -140,7 +140,6 @@ export class NewMovie extends React.Component<{}, INewMovieState> {
     }
 
     render() {
-        console.log(this.state.movies)
         return (
             <div className="add-movie" onClick={this.resultsHandler}>
                     <ListGroup>

@@ -1,13 +1,7 @@
 import React from 'react';
-import './App.scss';
 import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
-// import asyncComponent from './hoc/asyncComponent';
 
 import Home from './containers/home/home';
-
-// const asyncCheckout = asyncComponent(() => {
-//   return import('./containers/Checkout/Checkout');
-// })
 
 export class App extends React.Component {
   render() {
